@@ -114,6 +114,11 @@ config ARCH_OR1K
 	---help---
 		OpenRISC architectures.
 
+config ARCH_ARC
+	bool "ARC"
+	---help---
+		Synopsys ARC architecture
+
 endchoice
 
 config ARCH
@@ -131,6 +136,7 @@ config ARCH
 	default "z16"     if ARCH_Z16
 	default "z80"     if ARCH_Z80
 	default "or1k"    if ARCH_OR1K
+	default "arc"     if ARCH_ARC
 
 source arch/arm/Kconfig
 source arch/avr/Kconfig
@@ -146,6 +152,7 @@ source arch/xtensa/Kconfig
 source arch/z16/Kconfig
 source arch/z80/Kconfig
 source arch/or1k/Kconfig
+source arch/arc/Kconfig
 
 config ARCH_TOOLCHAIN_IAR
 	bool

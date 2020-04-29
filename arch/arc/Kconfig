@@ -1,0 +1,55 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+if ARCH_ARC
+
+comment "ARC Options"
+
+choice
+	prompt "ARC chip selection"
+	default ARCH_CHIP_NSIM
+
+config ARCH_CHIP_NSIM
+	bool "ARC Nsim simulator"
+	---help---
+		ARC NSIM Simulator: arcem, arcsem, arcHS
+
+endchoice
+
+
+choice
+	prompt "ARC toolchain selection"
+	default ARC_TOOLCHAIN_GNU
+
+config ARC_TOOLCHAIN_GNU
+	bool "ARC GNU toolchain"
+	---help---
+		Use ARC GNU toolchain
+
+config ARC_TOOLCHAIN_MWDT
+	bool "ARC Metaware toolchain"
+	---help---
+		Use ARC Metaware toolchain
+
+endchoice
+
+config ARCH_ARC_EM
+	bool
+	default n
+	select ARCH_HAVE_IRQPRIO
+	select ARCH_IRQPRIO
+	---help---
+		ARC EM series
+
+config ARCH_CHIP
+	string
+	default "nsim"		if ARCH_CHIP_NSIM
+
+if ARCH_CHIP_NSIM
+source arch/arc/src/nsim/Kconfig
+endif
+
+
+endif # ARCH_ARC

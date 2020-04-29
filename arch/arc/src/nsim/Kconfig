@@ -1,0 +1,17 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+comment "ARC Nsim Configuration Options"
+
+choice
+	prompt "Nsim Configuration Selection"
+	default ARCH_CHIP_NSIM_EM
+	depends on ARCH_CHIP_NSIM
+
+config ARCH_CHIP_NSIM_EM
+	bool "NSIM ARC EM"
+	select ARCH_ARC_EM
+
+endchoice
