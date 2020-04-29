@@ -2019,6 +2019,12 @@ config ARCH_BOARD_CUSTOM
 		Don't see the board you want?  You must first select the exact MCU part
 		number, then the boards supporting that part will be available for selection.
 
+config ARCH_BOARD_NSIM_EM
+	bool "ARC Nsim ARC EM"
+	depends on ARCH_CHIP_NSIM
+	---help---
+		Select ARC Nsim EM virtual board
+
 endchoice
 
 if ARCH_BOARD_CUSTOM
@@ -2280,6 +2286,7 @@ config ARCH_BOARD
 	default "sim"                      if ARCH_BOARD_SIM
 	default "moxa"                     if ARCH_BOARD_MOXA
 	default "spresense"                if ARCH_BOARD_SPRESENSE
+	default "nsim_em"                  if ARCH_BOARD_NSIM_EM
 
 comment "Common Board Options"
 
@@ -2918,6 +2925,9 @@ source "boards/z80/ez80/z20x/Kconfig"
 endif
 if ARCH_BOARD_Z80SIM
 source "boards/z80/z80/z80sim/Kconfig"
+endif
+if ARCH_BOARD_NSIM_EM
+source "boards/arc/nsim/nsim_em/Kconfig"
 endif
 
 config BOARD_CRASHDUMP
